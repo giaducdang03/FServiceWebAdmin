@@ -1,36 +1,49 @@
-import { useState } from 'react';
-
+// import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-
+import Iconify from 'src/components/iconify/iconify';
 import { products } from 'src/_mock/products';
-
+import Button from '@mui/material/Button';
 import ProductCard from '../product-card';
 import ProductSort from '../product-sort';
-import ProductFilters from '../product-filters';
+// import ProductFilters from '../product-filters';
 import ProductCartWidget from '../product-cart-widget';
 
 // ----------------------------------------------------------------------
 
 export default function ProductsView() {
-  const [openFilter, setOpenFilter] = useState(false);
 
-  const handleOpenFilter = () => {
-    setOpenFilter(true);
-  };
+  const navigate = useNavigate();
 
-  const handleCloseFilter = () => {
-    setOpenFilter(false);
+  const handleAdd = () => {
+    navigate('/sections/products/product-addform.jsx');
   };
+  // const [openFilter, setOpenFilter] = useState(false);
+
+  // const handleOpenFilter = () => {
+  //   setOpenFilter(true);
+  // };
+
+  // const handleCloseFilter = () => {
+  //   setOpenFilter(false);
+  // };
 
   return (
     <Container>
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Products
-      </Typography>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4">Package</Typography>
 
+        <Button 
+        variant="contained"
+         color="inherit" 
+         startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={handleAdd}>
+          New Package
+        </Button>
+      </Stack>
       <Stack
         direction="row"
         alignItems="center"
@@ -39,11 +52,11 @@ export default function ProductsView() {
         sx={{ mb: 5 }}
       >
         <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-          <ProductFilters
+          {/* <ProductFilters
             openFilter={openFilter}
             onOpenFilter={handleOpenFilter}
             onCloseFilter={handleCloseFilter}
-          />
+          /> */}
 
           <ProductSort />
         </Stack>
