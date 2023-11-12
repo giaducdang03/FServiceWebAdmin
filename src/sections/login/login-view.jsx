@@ -29,19 +29,43 @@ export default function LoginView() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    router.push('/dashboard');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log('Form submitted with data:', formData);
+
+    // Handle api login
+
+
+
+    router.push('/admin');
   };
 
   const renderForm = (
-    <>
+    <form onSubmit={handleSubmit} autoComplete='off'>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField
+          name="email"
+          label="Email address"
+          onChange={handleChange}
+        />
 
         <TextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
+          onChange={handleChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -66,11 +90,10 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
-        onClick={handleClick}
       >
         Login
       </LoadingButton>
-    </>
+    </form>
   );
 
   return (
