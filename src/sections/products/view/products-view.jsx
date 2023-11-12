@@ -4,13 +4,13 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Iconify from 'src/components/iconify/iconify';
 import { products } from 'src/_mock/products';
-import Button from '@mui/material/Button';
 import ProductCard from '../product-card';
 import ProductSort from '../product-sort';
-// import ProductFilters from '../product-filters';
 import ProductCartWidget from '../product-cart-widget';
+// import ProductFilters from '../product-filters';
 
 // ----------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ export default function ProductsView() {
   const navigate = useNavigate();
 
   const handleAdd = () => {
-    navigate('/sections/products/product-addform.jsx');
+    navigate('/add-package');
   };
   // const [openFilter, setOpenFilter] = useState(false);
 
