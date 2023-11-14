@@ -1,12 +1,14 @@
+/* eslint-disable */
+
 import React from 'react';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import { Button, TextField, Typography, Container, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-function AddForm() {
+function CreatePackage() {
     const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
@@ -93,4 +95,4 @@ function AddForm() {
     );
 }
 
-export default AddForm;
+export default CreatePackage;
