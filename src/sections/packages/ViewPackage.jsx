@@ -6,7 +6,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Iconify from 'src/components/iconify/iconify';
-import { products } from 'src/_mock/products';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import PackageSort from './PackageSort';
 import PackageCardWidget from './PackageCardWidget';
 import PackageCard from './PackageCard';
@@ -15,22 +16,26 @@ import PackageCard from './PackageCard';
 // ----------------------------------------------------------------------
 
 export default function ViewPackage() {
-
   const navigate = useNavigate();
+  const [packages, setPackages] = useState([]);
 
+  useEffect(() => {
+
+    const fetchPackages = async () => {
+      try {
+        const response = await axios.get('https://fservices.azurewebsites.net/api/packages');
+        console.log(response.data);
+        setPackages(response.data); // Assuming the API returns an array
+      } catch (error) {
+        console.error('Failed to fetch packages:', error);
+      }
+    };
+
+    fetchPackages();
+  }, []);
   const handleAdd = () => {
     navigate('/packages/new');
   };
-  // const [openFilter, setOpenFilter] = useState(false);
-
-  // const handleOpenFilter = () => {
-  //   setOpenFilter(true);
-  // };
-
-  // const handleCloseFilter = () => {
-  //   setOpenFilter(false);
-  // };
-
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -57,11 +62,10 @@ export default function ViewPackage() {
           <PackageSort />
         </Stack>
       </Stack>
-
       <Grid container spacing={3}>
-        {products.map((product) => (
-          <Grid key={product.id} xs={12} sm={6} md={3}>
-            <PackageCard product={product} />
+        {packages.map((packageItem) => (
+          <Grid key={packageItem.id} xs={12} sm={6} md={3}>
+            <PackageCard packageItem={packageItem} />
           </Grid>
         ))}
       </Grid>
