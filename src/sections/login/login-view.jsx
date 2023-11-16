@@ -1,4 +1,9 @@
 import { useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-toastify/dist/ReactToastify.css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { toast, ToastContainer } from 'react-toastify';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -16,6 +21,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useRouter } from 'src/routes/hooks';
 
 import { bgGradient } from 'src/theme/css';
+import { loginAPI } from 'src/services/UserService';
 
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
@@ -23,6 +29,7 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
+  const [isLogged, setIsLogged] = useState(true);
   const theme = useTheme();
 
   const router = useRouter();
@@ -44,22 +51,43 @@ export default function LoginView() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log('Form submitted with data:', formData);
+    console.log('check form', formData.password);
+    if (!formData.password) {
+      toast.error('Mật khẩu không được để trống');
+    }
+    try {
+      const res = await loginAPI(formData);
+      if (res.status !== 401 && res.status !== 400) {
+        if (res && res.data && res.data.status === true) {
+          const { jwtToken } = res.data;
+          if (jwtToken) {
+            const decoded = jwtDecode(jwtToken);
+            const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+            console.log('check role', role);
+            const userName = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+            setIsLogged(true);
+            localStorage.setItem('isLogged', isLogged);
+            localStorage.setItem('username', userName);
+            localStorage.setItem('role', role);
+            localStorage.setItem('accesstoken', jwtToken);
 
-    // Handle api login
-
-
-
-    router.push('/admin');
+            if (role === 'ADMIN') {
+              router.push('/admin');
+            } else {
+              router.push('/');
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.log('Error fetching Signin', error);
+    }
   };
 
   const renderForm = (
-    <form onSubmit={handleSubmit} autoComplete='off'>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <Stack spacing={3}>
-        <TextField
-          name="email"
-          label="Email address"
-          onChange={handleChange}
-        />
+        <TextField name="email" label="Email address" onChange={handleChange} />
 
         <TextField
           name="password"
@@ -84,13 +112,7 @@ export default function LoginView() {
         </Link>
       </Stack>
 
-      <LoadingButton
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        color="inherit"
-      >
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" color="inherit">
         Login
       </LoadingButton>
     </form>
@@ -113,7 +135,6 @@ export default function LoginView() {
           left: { xs: 16, md: 24 },
         }}
       />
-
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
@@ -172,6 +193,14 @@ export default function LoginView() {
           {renderForm}
         </Card>
       </Stack>
+      <ToastContainer
+        autoClose={2000}
+        pauseOnHover={false}
+        style={{
+          top: '3em',
+          zIndex: 1061,
+        }}
+      />
     </Box>
   );
 }

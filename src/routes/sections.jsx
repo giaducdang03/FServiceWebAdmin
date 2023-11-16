@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { lazy, Suspense } from 'react';
 import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
