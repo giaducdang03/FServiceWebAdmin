@@ -1,7 +1,5 @@
+/* eslint-disable import/no-cycle */
 import axios from 'axios';
-
-// eslint-disable-next-line import/no-cycle
-// import UseRefreshToken from '../services/UserService';
 
 const config = axios.create({
   baseURL: 'https://fservices.azurewebsites.net',

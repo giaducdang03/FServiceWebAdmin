@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -8,6 +10,8 @@ import { alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+
+import { handleLogout } from 'src/utils/tools';
 
 import { account } from 'src/_mock/account';
 
@@ -36,9 +40,13 @@ export default function AccountPopover() {
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(null);
+    handleLogout();
+    toast.success('Bạn đã đăng xuất thành công');
+    navigate('/');
   };
 
   return (
