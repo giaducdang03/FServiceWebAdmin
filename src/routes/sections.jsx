@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { lazy, Suspense } from 'react';
 import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
@@ -17,6 +18,10 @@ export const PackageCardDetail = lazy(() => import('src/pages/packages/PackageDe
 export default function Router() {
   const routes = useRoutes([
     {
+      path: '/',
+      element: <Navigate to="/login" replace />,
+    },
+    {
       element: (
         <DashboardLayout>
           <Suspense>
@@ -25,7 +30,7 @@ export default function Router() {
         </DashboardLayout>
       ),
       children: [
-        { element: <IndexPage />, index: true },
+        { element: <IndexPage />, index: true, path: 'admin' },
         { path: 'user', element: <UserPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'packages', element: <ViewPackage /> },

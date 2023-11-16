@@ -13,22 +13,22 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
+    title: 'Người dùng',
     path: '/user',
     icon: icon('ic_user'),
   },
   {
-    title: 'package',
+    title: 'Gói dịch vụ',
     path: '/packages',
     icon: icon('ic_cart'),
   },
   {
-    title: 'blog',
+    title: 'Dịch vụ',
     path: '/blog',
     icon: icon('ic_blog'),
   },
   {
-    title: 'login',
+    title: 'Đăng nhập',
     path: '/login',
     icon: icon('ic_lock'),
   },
