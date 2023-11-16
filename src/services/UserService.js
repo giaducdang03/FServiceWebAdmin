@@ -19,6 +19,13 @@ const loginAPI = (data) => {
   return config.post('/api/authentication/SignIn', data, refreshedConfig);
 };
 
+
+const getService = () => {
+  const refreshedConfig = refreshData();
+  return config.get('/api/services', refreshedConfig);
+};
+
+
 // const Launch = () => {
 //   const refreshedConfig = refreshData();
 //   return config.get('/api/authentication/Launch', refreshedConfig);
@@ -48,4 +55,4 @@ const loginAPI = (data) => {
 //   return config.post('/api/orders', data, refreshedConfig);
 // };
 
-export { loginAPI };
+export { loginAPI, getService };

@@ -11,6 +11,7 @@ export const LoginPage = lazy(() => import('src/pages/login'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const ViewPackage = lazy(() => import('src/pages/packages/PackagePage'));
 export const CreatePackage = lazy(() => import('src/pages/packages/CreatePackagePage'));
+export const ViewService = lazy(() => import('src/pages/services/ServicePackagePage'));
 
 // ----------------------------------------------------------------------
 
@@ -34,6 +35,7 @@ export default function Router() {
         { path: 'blog', element: <BlogPage /> },
         { path: 'packages', element: <ViewPackage /> },
         { path: 'packages/new', element: <CreatePackage />},
+        { path: 'services', element: <ViewService /> },
       ],
     },
     {

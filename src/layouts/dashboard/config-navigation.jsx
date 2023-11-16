@@ -24,7 +24,7 @@ const navConfig = [
   },
   {
     title: 'Dịch vụ',
-    path: '/blog',
+    path: '/services',
     icon: icon('ic_blog'),
   },
   {
