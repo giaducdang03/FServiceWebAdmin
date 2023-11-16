@@ -7,34 +7,23 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { fCurrency } from 'src/utils/format-number';
+import {  useNavigate } from 'react-router-dom';
 
-import Label from 'src/components/label';
-import { ColorPreview } from 'src/components/color-utils';
 
 // ----------------------------------------------------------------------
 
-export default function PackageCard({ product }) {
-  const renderStatus = (
-    <Label
-      variant="filled"
-      color={(product.status === 'sale' && 'error') || 'info'}
-      sx={{
-        zIndex: 9,
-        top: 16,
-        right: 16,
-        position: 'absolute',
-        textTransform: 'uppercase',
-      }}
-    >
-      {product.status}
-    </Label>
-  );
+export default function packageItemCard({ packageItem }) {
+const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/packages/detail/${packageItem.id}`);
+  }
 
   const renderImg = (
     <Box
       component="img"
-      alt={product.name}
-      src={product.cover}
+      alt={packageItem.name}
+      src={packageItem.image}
       sx={{
         top: 0,
         width: 1,
@@ -55,28 +44,29 @@ export default function PackageCard({ product }) {
           textDecoration: 'line-through',
         }}
       >
-        {product.priceSale && fCurrency(product.priceSale)}
+     
       </Typography>
       &nbsp;
-      {fCurrency(product.price)}
+      {fCurrency(packageItem.price)}
     </Typography>
   );
 
   return (
-    <Card>
+    <Card    onClick = {handleClick}  > 
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        {product.status && renderStatus}
+       
 
         {renderImg}
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
-          {product.name}
+        
+          {packageItem.name}
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={product.colors} />
+        
           {renderPrice}
         </Stack>
       </Stack>
@@ -84,6 +74,6 @@ export default function PackageCard({ product }) {
   );
 }
 
-PackageCard.propTypes = {
-  product: PropTypes.object,
+packageItemCard.propTypes = {
+  packageItem: PropTypes.object,
 };
