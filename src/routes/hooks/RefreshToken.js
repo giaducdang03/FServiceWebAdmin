@@ -1,10 +1,13 @@
 // /* eslint-disable import/no-cycle */
 // import { toast } from 'react-toastify';
-// import { Navigate } from 'react-router-dom';
+// // import { useNavigate } from 'react-router-dom';
+
+// import { sendRefreshToken } from 'src/services/UserService';
 
 // import { handleLogout } from '../../utils/tools';
 
-// export default function UseRefreshToken() {
+// export default function RefreshToken() {
+//     // const navigate = useNavigate();
 //   async function refresh() {
 //     try {
 //       const response = await sendRefreshToken({
@@ -21,11 +24,11 @@
 //       }
 //       handleLogout();
 //       toast.warning('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
-//       return <Navigate to="/" />;
+//       return "";
 //     } catch (error) {
 //       handleLogout();
 //       toast.warning('Đã xảy ra lỗi khi refresh token. Vui lòng đăng nhập lại.');
-//       return <Navigate to="/" />;
+//       return "";
 //     }
 //   }
 //   return refresh;

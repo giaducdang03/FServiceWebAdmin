@@ -7,7 +7,7 @@ const config = axios.create({
     Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
   },
 });
-// const refresh = UseRefreshToken();
+// const refresh = RefreshToken();
 config.interceptors.response.use(
   (response) => response || { status: response.status },
   async (error) => {
@@ -23,6 +23,7 @@ config.interceptors.response.use(
     //     prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
     //     return config(prevRequest);
     //   }
+    //   return Promise.reject(error);
     // }
 
     if (eRes) {
