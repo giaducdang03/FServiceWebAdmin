@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import PropTypes from 'prop-types';
-import {  UseNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -9,15 +10,14 @@ import Typography from '@mui/material/Typography';
 
 // import { fCurrency } from 'src/utils/format-number';
 
-
 // ----------------------------------------------------------------------
 
 export default function packageItemCard({ packageItem }) {
-const navigate = UseNavigate();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/packages/detail/${packageItem.id}`);
-  }
+  };
 
   const renderImg = (
     <Box
@@ -53,21 +53,15 @@ const navigate = UseNavigate();
   );
 
   return (
-    <Card    onClick = {handleClick}  > 
-      <Box sx={{ pt: '100%', position: 'relative' }}>
-       
-
-        {renderImg}
-      </Box>
+    <Card onClick={handleClick}>
+      <Box sx={{ pt: '100%', position: 'relative' }}>{renderImg}</Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
-        
           {packageItem.name}
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-        
           {renderPrice}
         </Stack>
       </Stack>

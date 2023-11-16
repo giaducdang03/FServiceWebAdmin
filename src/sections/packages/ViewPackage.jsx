@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
@@ -7,8 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify/iconify';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+
 import PackageSort from './PackageSort';
 import PackageCard from './PackageCard';
 import PackageCardWidget from './PackageCardWidget';
@@ -20,7 +21,6 @@ export default function ViewPackage() {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
-
     const fetchPackages = async () => {
       try {
         const response = await axios.get('https://fservices.azurewebsites.net/api/packages');
@@ -33,8 +33,6 @@ export default function ViewPackage() {
 
     fetchPackages();
   }, []);
-
-
 
   const handleAdd = () => {
     navigate('/packages/new');
@@ -67,7 +65,7 @@ export default function ViewPackage() {
       <Grid container spacing={3}>
         {packages.map((packageItem) => (
           <Grid key={packageItem.id} xs={12} sm={6} md={3}>
-            <PackageCard  packageItem={packageItem} />
+            <PackageCard packageItem={packageItem} />
           </Grid>
         ))}
       </Grid>
