@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import { handleLogout } from 'src/utils/tools';
 
 import { account } from 'src/_mock/account';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -44,6 +45,9 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const handleClick = () => {
     handleLogout();
     toast.success('Bạn đã đăng xuất thành công');
     navigate('/');
@@ -116,7 +120,19 @@ export default function AccountPopover() {
           onClick={handleClose}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
-          Thoát
+          <Typography
+            style={{
+              color: 'inherit',
+              fontSize: 'inherit',
+              fontWeight: '700',
+              margin: '0',
+              padding: '0',
+              width: '100%',
+            }}
+            onClick={handleClick}
+          >
+            Thoát
+          </Typography>
         </MenuItem>
       </Popover>
     </>

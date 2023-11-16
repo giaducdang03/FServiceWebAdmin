@@ -31,10 +31,10 @@ const getService = () => {
 //   return config.get('/api/authentication/Launch', refreshedConfig);
 // };
 
-// const fetchUser = (page) => {
-//   const refreshedConfig = refreshData();
-//   return config.get(`/api/accounts?PageNumber=${page}&PageSize=10`, refreshedConfig);
-// };
+const fetchUser = (page) => {
+  const refreshedConfig = refreshData();
+  return config.get(`/api/accounts?PageNumber=${page}&PageSize=10`, refreshedConfig);
+};
 
 // const sendRefreshToken = (data) => {
 //   const refreshedConfig = refreshData();
@@ -55,4 +55,4 @@ const getService = () => {
 //   return config.post('/api/orders', data, refreshedConfig);
 // };
 
-export { loginAPI, getService };
+export { loginAPI, fetchUser, getService };

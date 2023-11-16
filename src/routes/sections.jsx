@@ -6,7 +6,7 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
-export const UserPage = lazy(() => import('src/pages/user'));
+export const UserPage = lazy(() => import('src/pages/users/UserPage'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const ViewPackage = lazy(() => import('src/pages/packages/PackagePage'));
@@ -49,7 +49,7 @@ export default function Router() {
     {
       path: '*',
       element: <Navigate to="/404" replace />,
-    }
+    },
   ]);
 
   return routes;
