@@ -1,29 +1,18 @@
-import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 
-import '../packages/CardDetail.css'
+import './CardDetail.css'
 import config from 'src/utils/cus-axios';
-import { set } from 'lodash';
+
 const columns = [
     { id: "img", label: "Ảnh", minWidth: 20 },
     { id: "name", label: "Tên", minWidth: 170 },
     { id: "description", label: "Mô tả", minWidth: 100 },
 
 
-];
-
-const rows = [
-    {
-        id: 1,
-        img: "",
-        name: "Package 1",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-
-    }
 ];
 
 const columns1 = [
@@ -54,7 +43,6 @@ function PackageCardDetail() {
     const { id } = useParams();
     const [data, setData] = useState({ packageDetails: [], serviceDetails: [] });
     const [loading, setLoading] = useState(true);
-    const [price, setPrice] = useState([]);
 
 
     useEffect(() => {
@@ -76,16 +64,13 @@ function PackageCardDetail() {
                 );
 
                 const serviceResponses = await Promise.all(
-                    serviceIds.map((id) => config.get(`/api/services/${id}`))
+                    serviceIds.map((ids) => config.get(`/api/services/${ids}`))
                 );
                 const services = serviceResponses.map((response) => response.data);
                 setData({
                     packageDetails: initialResponse.data.packageDetails,
                     serviceDetails: services,
                 });
-                const res = await config.get(`/api/packages/${id}`);
-                setPrice(res.data.packagePrices);
-                setPackageName(res.data.name);
             }
             setLoading(false);
         } catch (error) {
@@ -101,7 +86,7 @@ function PackageCardDetail() {
             <div className="left-section">
 
                 <div className='picture'>
-                    <img src={packages?.image} alt="Package Image" className="package-image" />
+                    <img src={packages?.image} alt="" className="package-image" />
                 </div>
 
             </div>

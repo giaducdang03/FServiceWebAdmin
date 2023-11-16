@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
@@ -7,17 +6,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { products } from 'src/_mock/products';
-
 import Iconify from 'src/components/iconify/iconify';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PackageSort from './PackageSort';
 import PackageCard from './PackageCard';
 import PackageCardWidget from './PackageCardWidget';
-import PackageCard from './PackageCard';
-// import config from 'src/utils/cus-axios';
-// import ProductFilters from '../product-filters';
 
 // ----------------------------------------------------------------------
 
