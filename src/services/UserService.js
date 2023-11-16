@@ -24,10 +24,10 @@ const loginAPI = (data) => {
 //   return config.get('/api/authentication/Launch', refreshedConfig);
 // };
 
-// const fetchUser = (page) => {
-//   const refreshedConfig = refreshData();
-//   return config.get(`/api/accounts?PageNumber=${page}&PageSize=10`, refreshedConfig);
-// };
+const fetchUser = (page) => {
+  const refreshedConfig = refreshData();
+  return config.get(`/api/accounts?PageNumber=${page}&PageSize=10`, refreshedConfig);
+};
 
 // const sendRefreshToken = (data) => {
 //   const refreshedConfig = refreshData();
@@ -48,4 +48,4 @@ const loginAPI = (data) => {
 //   return config.post('/api/orders', data, refreshedConfig);
 // };
 
-export { loginAPI };
+export { loginAPI, fetchUser };
