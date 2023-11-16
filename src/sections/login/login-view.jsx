@@ -74,10 +74,17 @@ export default function LoginView() {
             if (role === 'ADMIN') {
               router.push('/admin');
             } else {
-              router.push('/');
+              toast.error('Bạn không có quyền truy cập vào trang này');
+              router.push('/login');
             }
+          } else {
+            toast.error('Lỗi token.');
           }
+        } else {
+          toast.error(res.data);
         }
+      } else {
+        toast.error(res.message || res.data.errors.Email[0]);
       }
     } catch (error) {
       console.log('Error fetching Signin', error);
@@ -87,11 +94,11 @@ export default function LoginView() {
   const renderForm = (
     <form onSubmit={handleSubmit} autoComplete="off">
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" onChange={handleChange} />
+        <TextField name="email" label="Email" onChange={handleChange} />
 
         <TextField
           name="password"
-          label="Password"
+          label="Mật khẩu"
           type={showPassword ? 'text' : 'password'}
           onChange={handleChange}
           InputProps={{
@@ -108,7 +115,7 @@ export default function LoginView() {
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
         <Link variant="subtitle2" underline="hover">
-          Forgot password?
+          {/* Forgot password? */}
         </Link>
       </Stack>
 
@@ -143,13 +150,13 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to Minimal</Typography>
+          <Typography variant="h4">Đăng nhập vào FService</Typography>
 
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
+            {/* Don’t have an account?
             <Link variant="subtitle2" sx={{ ml: 0.5 }}>
               Get started
-            </Link>
+            </Link> */}
           </Typography>
 
           <Stack direction="row" spacing={2}>
