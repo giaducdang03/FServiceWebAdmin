@@ -2,15 +2,17 @@ import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 
 import '../packages/CardDetail.css'
+import config from 'src/utils/cus-axios';
+import { set } from 'lodash';
 const columns = [
     { id: "img", label: "Ảnh", minWidth: 20 },
     { id: "name", label: "Tên", minWidth: 170 },
     { id: "description", label: "Mô tả", minWidth: 100 },
-    { id: "action", label: "Action", minWidth: 170 },
+
 
 ];
 
@@ -20,7 +22,7 @@ const rows = [
         img: "",
         name: "Package 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        action: "",
+
     }
 ];
 
@@ -52,18 +54,7 @@ function PackageCardDetail() {
     const { id } = useParams();
     const [data, setData] = useState({ packageDetails: [], serviceDetails: [] });
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetchPackages = async () => {
-            try {
-                const packageResponse = await axios.get('https://fservices.azurewebsites.net/api/packages');
-                setPackages(packageResponse.data);
-            } catch (error) {
-                console.error('Failed to fetch packages:', error);
-            }
-        };
-
-        fetchPackages();
-    }, []); // Dependency array is empty, so this runs once on mount
+    const [price, setPrice] = useState([]);
 
 
     useEffect(() => {
@@ -73,8 +64,11 @@ function PackageCardDetail() {
     const fetchPackage = async () => {
         try {
             const initialResponse = await config.get(
-                `/api/packages/${id}?typeId=${2}`
+                `/api/packages/${id}?typeId=1`
+
             );
+            console.log('check', initialResponse.data);
+            setPackages(initialResponse.data);
 
             if (initialResponse.data && initialResponse.data.packageDetails) {
                 const serviceIds = initialResponse.data.packageDetails.map(
@@ -89,6 +83,9 @@ function PackageCardDetail() {
                     packageDetails: initialResponse.data.packageDetails,
                     serviceDetails: services,
                 });
+                const res = await config.get(`/api/packages/${id}`);
+                setPrice(res.data.packagePrices);
+                setPackageName(res.data.name);
             }
             setLoading(false);
         } catch (error) {
@@ -96,6 +93,7 @@ function PackageCardDetail() {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="container">
@@ -103,38 +101,26 @@ function PackageCardDetail() {
             <div className="left-section">
 
                 <div className='picture'>
-                    <img src={packages[0]?.image || "path-to-default-image"} alt="Package Image" className="package-image" />
+                    <img src={packages?.image} alt="Package Image" className="package-image" />
                 </div>
-                {/* <div>
-                    <button className="choose">Choose</button>
-                </div> */}
+
             </div>
 
             <div className="right-section">
-                <table className="title-table" style={{ padding: '100px', fontSize: '20px' }}>
-                    <tbody>
-                        <tr>
-                            <thead>Tên:</thead>
-                            <td>
-                                Gói thông thường
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <thead>Mô tả:</thead>
-                            <td>
-                                <td>{packages[0]?.description || "Default Description"}</td>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <div className="title-section" style={{ padding: '30px', fontSize: '20px' }}>
+                    <div className="title-item">
+                        <h4>Tên:</h4> {packages?.name || "Default Name"}
+                    </div>
+                    <div className="title-item">
+                        <h4>Mô tả:</h4> {packages?.description || "Default Description"}
+                    </div>
+                </div>
             </div>
 
             {/* Source Section */}
 
             <div className='service'>
-                <h3>Service</h3>
+                <h2>Dịch Vụ</h2>
                 <div className="table container">
                     <div className='service-table'>
                         <table>
@@ -154,11 +140,6 @@ function PackageCardDetail() {
                                         <td>{service.name}</td>
                                         <td>{service.description}</td>
 
-                                        {/* <td>
-                                          
-                                            <button onClick={() => { }}>Update</button>
-                                            <button onClick={() => { }}>Delete</button>
-                                        </td> */}
                                     </tr>
                                 ))}
                             </tbody>

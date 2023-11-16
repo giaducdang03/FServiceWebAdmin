@@ -6,11 +6,17 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { fCurrency } from 'src/utils/format-number';
+import {  useNavigate } from 'react-router-dom';
 
 
 // ----------------------------------------------------------------------
 
 export default function packageItemCard({ packageItem }) {
+const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/packages/detail/${packageItem.id}`);
+  }
 
   const renderImg = (
     <Box
@@ -45,7 +51,7 @@ export default function packageItemCard({ packageItem }) {
   );
 
   return (
-    <Card>
+    <Card    onClick = {handleClick}  > 
       <Box sx={{ pt: '100%', position: 'relative' }}>
        
 

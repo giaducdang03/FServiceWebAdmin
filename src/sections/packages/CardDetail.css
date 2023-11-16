@@ -4,7 +4,7 @@
     padding: 10px
   }
   .left-section, .right-section {
-    flex-basis: calc(50% - 10px); /* Calculate the width as 50% minus the gap */
+    flex-basis: calc(65% - 10%);
     display: flex;
     flex-direction: column;
   }
@@ -28,17 +28,7 @@
     display: block; /* Ensure the image doesn't have space below it */
   }
   
-  .choose {
-    background-color: #ff8228; /* Orange background for buttons */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    margin-top: 10px; /* Add some space above the button */
-  }
+ 
   .service-detail {
     width: 100%;
     margin-top: 20px;

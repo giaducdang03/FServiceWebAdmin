@@ -35,7 +35,7 @@ export default function Router() {
         { path: 'blog', element: <BlogPage /> },
         { path: 'packages', element: <ViewPackage /> },
         { path: 'packages/new', element: <CreatePackage />},
-        { path: 'packages/detail', element: <PackageCardDetail />},
+        { path: 'packages/detail/:id', element: <PackageCardDetail />},
       ],
     },
     {

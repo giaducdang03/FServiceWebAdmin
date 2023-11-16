@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import PackageSort from './PackageSort';
 import PackageCardWidget from './PackageCardWidget';
 import PackageCard from './PackageCard';
+// import config from 'src/utils/cus-axios';
 // import ProductFilters from '../product-filters';
 
 // ----------------------------------------------------------------------
@@ -33,6 +34,9 @@ export default function ViewPackage() {
 
     fetchPackages();
   }, []);
+
+
+
   const handleAdd = () => {
     navigate('/packages/new');
   };
@@ -65,7 +69,7 @@ export default function ViewPackage() {
       <Grid container spacing={3}>
         {packages.map((packageItem) => (
           <Grid key={packageItem.id} xs={12} sm={6} md={3}>
-            <PackageCard packageItem={packageItem} />
+            <PackageCard  packageItem={packageItem} />
           </Grid>
         ))}
       </Grid>
