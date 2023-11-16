@@ -1,8 +1,10 @@
 import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import '../packages/CardDetail.css'
-
 const columns = [
     { id: "img", label: "Ảnh", minWidth: 20 },
     { id: "name", label: "Tên", minWidth: 170 },
@@ -41,14 +43,33 @@ const building = [
     { label: 'S101-1PM' },
 
 ];
+
+
 function PackageCardDetail() {
+    const navigate = useNavigate();
+    const [packages, setPackages] = useState([]);
+    
+useEffect(() => {
+
+    const fetchPackages = async () => {
+      try {
+        const response = await axios.get('https://fservices.azurewebsites.net/api/packages');
+        console.log(response.data);
+        setPackages(response.data); // Assuming the API returns an array
+      } catch (error) {
+        console.error('Failed to fetch packages:', error);
+      }
+    };
+
+    fetchPackages();
+  }, []);
     return (
         <div className="container">
             {/* Image and Title Section */}
             <div className="left-section">
 
                 <div className='picture'>
-                    <img src="path-to-your-image" alt="Your Image" className="package-image" />
+                <img src={packages[0]?.image || "path-to-default-image"} alt="Package Image" className="package-image" />
                 </div>
                 <div>
                     <button className="choose">Choose</button>
@@ -68,17 +89,16 @@ function PackageCardDetail() {
                         <tr>
                             <thead>Mô tả:</thead>
                             <td>
-                                Description
+                            <td>{packages[0]?.description || "Default Description"}</td>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-
             </div>
 
             {/* Source Section */}
-            <div>
+            
                 <div className='service'>
                     <h3>Service</h3>
             <div className="table container">
@@ -88,8 +108,8 @@ function PackageCardDetail() {
                                 <tr>
                                     {columns.map((column) => (
                                         <th key={column.id} style={{ minWidth: column.minWidth, textAlign: column.align }}>
-                                            {column.label}
-                                        </th>
+                                        {column.label}
+                                    </th>
                                     ))}
                                 </tr>
                             </thead>
@@ -97,9 +117,9 @@ function PackageCardDetail() {
                                 {rows.map((row, rowIndex) => (
                                     <tr key={rowIndex}>
                                         {columns.map((column) => (
-                                            <td key={column.id} style={{ minWidth: column.minWidth, textAlign: column.align }}>
-                                                {row[column.id]}
-                                            </td>
+                                           <td key={column.id}>
+                                           {column.id === 'action' ? row.action : row[column.id]}
+                                         </td>
                                         ))}
                                     </tr>
                                 ))}
@@ -147,8 +167,7 @@ function PackageCardDetail() {
                 </div>
                 </div>
             </div>
-        </div>
-
+        
     );
 }
 
