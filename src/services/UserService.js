@@ -19,12 +19,10 @@ const loginAPI = (data) => {
   return config.post('/api/authentication/SignIn', data, refreshedConfig);
 };
 
-
 const getService = () => {
   const refreshedConfig = refreshData();
   return config.get('/api/services', refreshedConfig);
 };
-
 
 // const Launch = () => {
 //   const refreshedConfig = refreshData();
@@ -33,26 +31,17 @@ const getService = () => {
 
 const fetchUser = (page) => {
   const refreshedConfig = refreshData();
-  return config.get(`/api/accounts?PageNumber=${page}&PageSize=10`, refreshedConfig);
+  return config.get(`/api/accounts?PageNumber=${page}&PageSize=50`, refreshedConfig);
 };
 
-// const sendRefreshToken = (data) => {
-//   const refreshedConfig = refreshData();
-//   return config.post('/api/authentication/Refresh-token', data, refreshedConfig);
-// };
+const fetchOrder = () => {
+  const refreshedConfig = refreshData();
+  return config.get(`/api/orders?PageSize=50`, refreshedConfig);
+};
 
-// const signUp = (userData) => config.post('/api/authentication/SignUp', userData);
+const fetchPackage = () => {
+  const refreshedConfig = refreshData();
+  return config.get(`/api/packages`, refreshedConfig);
+};
 
-// const editUser = (id, data) => {
-//   const refreshedConfig = refreshData();
-//   return config.put(`/api/accounts/${id}`, data, refreshedConfig);
-// };
-
-// const deleteUser = (id) => config.delete(`/api/accounts/${id}`);
-
-// const Order = (data) => {
-//   const refreshedConfig = refreshData();
-//   return config.post('/api/orders', data, refreshedConfig);
-// };
-
-export { loginAPI, fetchUser, getService };
+export { loginAPI, fetchUser, getService, fetchOrder, fetchPackage };

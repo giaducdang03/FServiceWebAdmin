@@ -4,16 +4,8 @@
     "browser": true,
     "es2021": true
   },
-  "plugins": [
-    "perfectionist",
-    "unused-imports",
-    "prettier"
-  ],
-  "extends": [
-    "airbnb",
-    "airbnb/hooks",
-    "prettier"
-  ],
+  "plugins": ["perfectionist", "unused-imports", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -27,17 +19,8 @@
     },
     "import/resolver": {
       "alias": {
-        "map": [
-          [
-            "src",
-            "./src"
-          ]
-        ],
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".json"
-        ]
+        "map": [["src", "./src"]],
+        "extensions": [".js", ".jsx", ".json"]
       }
     }
   },
@@ -88,6 +71,7 @@
         "args": "none"
       }
     ],
+
     "react/jsx-no-duplicate-props": [
       1,
       {
@@ -136,10 +120,7 @@
         "type": "line-length",
         "newlines-between": "always",
         "groups": [
-          [
-            "builtin",
-            "external"
-          ],
+          ["builtin", "external"],
           "custom-mui",
           "custom-routes",
           "custom-hooks",
@@ -148,11 +129,7 @@
           "custom-components",
           "custom-sections",
           "custom-types",
-          [
-            "parent",
-            "sibling",
-            "index"
-          ],
+          ["parent", "sibling", "index"],
           "object",
           "unknown"
         ],
@@ -167,9 +144,7 @@
             "custom-types": "src/types/**"
           }
         },
-        "internal-pattern": [
-          "src/**"
-        ]
+        "internal-pattern": ["src/**"]
       }
     ]
   }
