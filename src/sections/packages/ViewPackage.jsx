@@ -40,7 +40,7 @@ export default function ViewPackage() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Package</Typography>
+        <Typography variant="h4">Gói dịch vụ</Typography>
 
         <Button
           variant="contained"
@@ -48,7 +48,7 @@ export default function ViewPackage() {
           startIcon={<Iconify icon="eva:plus-fill" />}
           onClick={handleAdd}
         >
-          New Package
+          Thêm gói dịch vụ
         </Button>
       </Stack>
       <Stack

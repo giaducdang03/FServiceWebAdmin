@@ -8,6 +8,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import config from 'src/utils/cus-axios';
 
 import './CardDetail.css';
+import { Container } from '@mui/material';
 
 const columns = [
   { id: 'img', label: 'Ảnh', minWidth: 20 },
@@ -68,15 +69,9 @@ function PackageCardDetail() {
   };
 
   return (
-    <div className="container">
+    <Container>
       {/* Image and Title Section */}
-      <div className="left-section">
-        <div className="picture">
-          <img src={packages?.image} alt="" className="package-image" />
-        </div>
-      </div>
-
-      <div className="right-section">
+      <div className='columns-2'>
         <div className="title-section" style={{ padding: '30px', fontSize: '20px' }}>
           <div className="title-item">
             <h4>Tên:</h4> {packages?.name || 'Default Name'}
@@ -84,6 +79,9 @@ function PackageCardDetail() {
           <div className="title-item">
             <h4>Mô tả:</h4> {packages?.description || 'Default Description'}
           </div>
+        </div>
+        <div className="picture">
+          <img src={packages?.image} alt="" className="package-image" />
         </div>
       </div>
 
@@ -169,7 +167,7 @@ function PackageCardDetail() {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

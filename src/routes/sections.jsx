@@ -13,6 +13,7 @@ export const ViewPackage = lazy(() => import('src/pages/packages/PackagePage'));
 export const CreatePackage = lazy(() => import('src/pages/packages/CreatePackagePage'));
 export const ViewService = lazy(() => import('src/pages/services/ServicePackagePage'));
 export const PackageCardDetail = lazy(() => import('src/pages/packages/PackageDetailPage'));
+export const CreateService = lazy(() => import('src/pages/services/CreateService'))
 
 // ----------------------------------------------------------------------
 
@@ -38,6 +39,7 @@ export default function Router() {
         { path: 'packages/new', element: <CreatePackage />},
         { path: 'services', element: <ViewService /> },
         { path: 'packages/detail/:id', element: <PackageCardDetail />},
+        { path: 'services/new', element: <CreateService /> },
       ],
     },
     {
