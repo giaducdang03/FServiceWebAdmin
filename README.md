@@ -2,9 +2,12 @@
 
 ### Welcome to FService
 
+
 ### Demo: [FService-Admin](https://fservices-admin.vercel.app)
 
+
 #### Instructor: Thầy Lâm Hữu Khánh Phương
+
 
 #### 4 Members:
 
@@ -12,20 +15,24 @@
 - Dương Tôn Bảo - SE171065
 - Phạm Ngọc Bảo - SE171066
 - Nguyễn Bình Phương Trâm - SE171076
+  
 
 #### Screen-shots
 
 ![Fservce introduction](https://github.com/duongbao0803/SWP391_FService/blob/main/screenshots/introShot.png?raw=true)
 
+
 #### Introduction
 
 Welcome to our user and service management website! We provide a powerful platform to help administrators easily manage user information and service provisioning. With a user-friendly interface and features such as user management, information search, and profile editing, we ensure that you have all the tools needed to efficiently carry out your management tasks. Explore the utilities we offer to support your management work effectively!
+
 
 #### Technologies
 
 - Front-end: ReactJS, ViteJS, FireBase, MUI.
 - Deployment: Vercel.
 - Other: GitHub, Jira.
+  
 
 ##### Connect me via: tonbao0803@gmail.com
 
