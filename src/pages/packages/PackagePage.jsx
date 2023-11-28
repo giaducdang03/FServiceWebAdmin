@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import { UserView } from 'src/sections/user/view';
+import ViewPackage from 'src/sections/packages/ViewPackage';
 
 // ----------------------------------------------------------------------
 
-export default function UserPage() {
+export default function PackagesPage() {
   return (
     <>
       <Helmet>
-        <title> Người dùng | FService </title>
+        <title> Packages | FService </title>
       </Helmet>
 
-      <UserView />
+      <ViewPackage />
     </>
   );
 }

@@ -9,26 +9,26 @@ const icon = (name) => (
 const navConfig = [
   {
     title: 'dashboard',
-    path: '/',
+    path: '/admin',
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
+    title: 'Người dùng',
     path: '/user',
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
-    path: '/products',
+    title: 'Gói dịch vụ',
+    path: '/packages',
     icon: icon('ic_cart'),
   },
   {
-    title: 'blog',
-    path: '/blog',
+    title: 'Dịch vụ',
+    path: '/services',
     icon: icon('ic_blog'),
   },
   {
-    title: 'login',
+    title: 'Đăng nhập',
     path: '/login',
     icon: icon('ic_lock'),
   },

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -9,21 +11,24 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
+import { handleLogout } from 'src/utils/tools';
+
 import { account } from 'src/_mock/account';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
+    label: 'Trang chủ',
     icon: 'eva:home-fill',
   },
   {
-    label: 'Profile',
+    label: 'Tài khoản',
     icon: 'eva:person-fill',
   },
   {
-    label: 'Settings',
+    label: 'Cài đặt',
     icon: 'eva:settings-2-fill',
   },
 ];
@@ -36,9 +41,16 @@ export default function AccountPopover() {
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const handleClick = () => {
+    handleLogout();
+    toast.success('Bạn đã đăng xuất thành công');
+    navigate('/');
   };
 
   return (
@@ -108,7 +120,19 @@ export default function AccountPopover() {
           onClick={handleClose}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
-          Logout
+          <Typography
+            style={{
+              color: 'inherit',
+              fontSize: 'inherit',
+              fontWeight: '700',
+              margin: '0',
+              padding: '0',
+              width: '100%',
+            }}
+            onClick={handleClick}
+          >
+            Thoát
+          </Typography>
         </MenuItem>
       </Popover>
     </>

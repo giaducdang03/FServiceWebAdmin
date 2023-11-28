@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px
+  }
+  .left-section, .right-section {
+    flex-basis: calc(65% - 10%);
+    display: flex;
+    flex-direction: column;
+  }
+  .left-section {
+    flex: 1;
+    padding: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px; /* Add space below the section for the button */
+  }
+  
+  .picture {
+    width: 100%;
+    height: 250px; /* Make the image responsive */
+   
+    padding: 10px;
+  }
+  
+  .picture img {
+    width: 100%; /* Make the image responsive */
+    height: auto;
+    display: block; /* Ensure the image doesn't have space below it */
+  }
+  
+ 
+  .service-detail {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .select {
+    margin-bottom: 20px; /* Provide space between the dropdown and the table */
+  }
+  
+  /* Style the Autocomplete component */
+  .select .MuiAutocomplete-root {
+    width: 100%; /* Use 100% width to make it responsive */
+  }
+  
+  .service-table {
+    width: 100%; /* Ensure the table uses the full width */
+    margin-bottom: 20px; /* Provide space below the table */
+  }
+ 
+  
+  /* Style the table itself */
+  .service-table table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .service-table th, 
+  .service-table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .service-table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Make sure the table headers have the same styling */
+  .service-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #fff;
+  }
+  
+  /* Responsive table styling */
+  @media screen and (max-width: 768px) {
+    .service-table table, 
+    .service-table thead, 
+    .service-table tbody, 
+    .service-table th, 
+    .service-table td, 
+    .service-table tr {
+      display: block;
+    }
+  
+    /* Hide table headers on small screens */
+    .service-table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+  
+    .service-table tr {
+      margin-bottom: 10px;
+    }
+  
+    .service-table td {
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      text-align: right;
+    }
+  
+    /* Add a pseudo-element for the labels */
+    .service-table td:before {
+      position: absolute;
+      left: 10px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+  
+    /* Use attribute selectors to label the data */
+    .service-table td:nth-of-type(1):before { content: "STT"; }
+    .service-table td:nth-of-type(2):before { content: "Tên"; }
+    .service-table td:nth-of-type(3):before { content: "Extra Price"; }
+    .service-table td:nth-of-type(4):before { content: "Giá"; }
+  }
+  
+  /* Make sure your Autocomplete component has a class or adjust the selector accordingly */
+  .MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 8px;
+    border: 1px solid #ddd; /* Consistent with table styling */
+  }

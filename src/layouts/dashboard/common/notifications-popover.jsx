@@ -80,9 +80,9 @@ export default function NotificationsPopover() {
 
   const [open, setOpen] = useState(null);
 
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
-  };
+  // const handleOpen = (event) => {
+  //   setOpen(event.currentTarget);
+  // };
 
   const handleClose = () => {
     setOpen(null);
@@ -99,7 +99,7 @@ export default function NotificationsPopover() {
 
   return (
     <>
-      <IconButton color={open ? 'primary' : 'default'} onClick={handleOpen}>
+      <IconButton color={open ? 'primary' : 'default'}>
         <Badge badgeContent={totalUnRead} color="error">
           <Iconify width={24} icon="solar:bell-bing-bold-duotone" />
         </Badge>

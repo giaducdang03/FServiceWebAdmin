@@ -45,6 +45,13 @@ export default function UserPage() {
     }
   };
 
+  // const getListUser = async () => {
+  //   try {
+  //   } catch (error) {
+  //     console.log('Error Fetching list U');
+  //   }
+  // };
+
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = users.map((n) => n.name);
