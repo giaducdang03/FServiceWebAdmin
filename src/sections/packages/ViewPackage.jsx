@@ -48,7 +48,7 @@ export default function ViewPackage() {
           startIcon={<Iconify icon="eva:plus-fill" />}
           onClick={handleAdd}
         >
-          New Package
+          Thêm Gói Dịch Vụ
         </Button>
       </Stack>
       <Stack
